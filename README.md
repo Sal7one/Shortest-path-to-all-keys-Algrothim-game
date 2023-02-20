@@ -1,52 +1,40 @@
-# Playfair Ciphre
+#  The Shortest Path to Get All Keys of a matrix.
 
 
-
-1 – We first take the Playfair key from the user and generate the grid
-
-
-2 – Then we let the user choose encrypt/decrypt
+### Introduction
 
 
-3 – The user then enters either The Cipher text or The Plain Text
-
-4 – We Then run the algorithms and produce the output 
-
-The Algorithms:
-Initial Setup:
-1 - We start by setting up the grid of 5x5 using The Playfair Key
-	
- 
-
-Encrypt:
+In a game to collect all keys (if possible) in the least amount of moves possible
+The player must navigate in the matrix and deal with 
+Walls, Locks, and collect keys.
 
 
-1 - We start by remove spaces from the plain text. 
+<img src="img.png" width="600px>
+
+### A mathematical model for the solution
 
 
-2 - We split it into even chunks of 2, if it’s an odd number we insert a place holder character “x” is the default choice, we also insert x if there’s a double letter. e.g., “hello” -> “he lx lo” 
-
-3 – We iterate over the 2 letter combinations. And find where their both row number and column number on the grid (through iteration) 
+We choose Breadth-first search since it has a running time of O(V+E) every vertex and every edge will be checked once.
 
 
-4 – Then we check for 3 conditions 
+### The Algorithm Analysis 
+
+We first setup the game by using nested loops to iterate over all items of the game board. To find the starting point and the number of keys in the game.
+We then start the queue from the starting point with 0 moves, and the we move in all possible directions while saving the visited nodes in a set (unique) 
+We check before moving if we have already found all keys matching the total number of keys, in the setup and then return the total number of moves if yes. Or If we exhausted all moves (the queue is fully popped)  we return “-1” 
+We add each possible move to the queue and before that we check if moving to that place makes contact with a wall, key, or empty space (valid move)
+Basic Operation: Comparison 
 
 
-•	The two letters have the same row number.
+### The time and space complexity
 
 
-•	The two letters have the same column number.
+Example
+Game board = [  ['D','@','.','C'] , ['c','.','#','d']  ]
+Time complexity
+1.	In the first loop we iterate over the game board to find all keys and starting point in this case n2
+2.	Then for every possible move for the queue element 4 ( directions ) 4 * n2 we check the surroundings
+So, we get O( n * m)
 
-
-•	They have different row and column numbers.
-
-
-We then apply the Playfair cipher by increasing the column number by 1 for both letters if they have the same row, increase the row number if they have the same column, or if they are different we swap the column numbers between them
- 
-
-
-Decrypt:
-
-
-1 – It follows the same steps as Encrypt until increasing and decreasing part
-We apply Decrypt Playfair cipher by decreasing the column number by 1 for both letters if they have the same row, decrease the row number if they have the same column, or if they are different we swap the column numbers between them
+Space complexity
+O(|V|) at most we have all vertices in the queue. 
