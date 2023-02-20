@@ -1,24 +1,24 @@
 let gridElm = document.querySelector("#grid");
 let movesElm = document.querySelector("#moves");
 
-let gameboard = [ 
+let g = [ 
   ['C','@','.','D'],
   ['d','.','#','c']
 ];
-let movesAnimation = new Set();
+let movesAnimation =[];
 let gameResult = -1;
 
-generateGrid(gameboard);
-findShortestPath();
+generateGrid(g);
+findShortestPath(g);
 
 if(gameResult  <= 0)
-movesElm.innerHTML = `Not possible to get all keys`;
+  movesElm.innerHTML = `Not possible to get all keys`;
 else
-movesElm.innerHTML = `Number of moves: ${gameResult}`;
+  movesElm.innerHTML = `Number of moves: ${gameResult}`;
 
 playAnimation(movesAnimation);
 
-function findShortestPath(){
+function findShortestPath(gameboard){
 
 let maxRows = gameboard.length;
 let maxCols = gameboard[0].length;
@@ -43,19 +43,21 @@ for (let i = 0; i < maxRows; i++) {
 
 let queue = [[startPoint[0], startPoint[1], [] , 0]];
 let visited = new Set();
-
+let lastFoundKey = "";
 while (queue.length > 0) {
+let cellMoves = new Set();
   let [i, j, keys, moves] = queue.shift();
 
+  if (keys.length === numberOfKeys) {
+    gameResult = moves;
+    break;
+  }
+
+  
   let uniqueStringForMove = `${i}${j}${keys}`;
   if (!visited.has(uniqueStringForMove)) {
     visited.add(uniqueStringForMove);
-
-    if (keys.length === numberOfKeys) {
-      gameResult = moves;
-      break;
-    }
-
+    
     for (let [x, y] of directions) {
       let new_keys = new Set(keys);
       let row = i + x;
@@ -73,14 +75,20 @@ while (queue.length > 0) {
             // Key
             if ("abcdef".includes(gameboard[row][col])) {
             new_keys.add(gameboard[row][col]);
+            lastFoundKey = `${row},${col}`
           }
-
-          movesAnimation.add(`${row},${col}`);
           queue.push([row, col, Array.from(new_keys), moves+1]);
-      }
+          cellMoves.add(`${i},${j}`);
+        }
     }
   }
+
+  // Remove duplicate moves of the same cell
+  if(cellMoves.size > 0){
+    movesAnimation.push(Array.from(cellMoves));
+  }
 }
+movesAnimation.push([lastFoundKey]);
 }
 
 
@@ -90,7 +98,9 @@ function playAnimation(listOfMovesMade){
   let timeout = 1000;
   let coordinatesElement = document.querySelector("#coordinates");
 
-  setOfMoves.forEach(rowColumn => {
+  setOfMoves.forEach(cellMove => {
+    cellMove.forEach(rowColumn=>{
+
     let row = rowColumn.split(",")[0]
     let column = rowColumn.split(",")[1]
   setTimeout(()=>{
@@ -102,13 +112,16 @@ function playAnimation(listOfMovesMade){
             
           allBoxes.forEach(box => {
             box.style.background = "teal";
-                
               });
               }, 500)
 
+              setTimeout(()=>{
+                coordinatesElement.innerHTML = ``
+              },timeout - 1000)
         }, timeout)
         timeout +=1000;
       });
+    })
 }
 
 function generateGrid(gameboard) {
