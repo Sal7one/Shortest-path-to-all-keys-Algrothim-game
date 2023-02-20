@@ -1,0 +1,170 @@
+body {
+    background-color: #e8e8e8;
+    font-size: 180%
+  }
+  
+  .row {
+    margin: 0 auto;
+    width: auto;
+    clear: both;
+    text-align: center;
+    font-family: 'Exo';
+  }
+  
+  .letter{
+    float: left;
+    padding: 10px 20px;
+    margin: 2px;
+    font-size: 2rem;
+    cursor: pointer;
+    height: 90px;
+    width: 90px;
+    color: white;
+    font-weight: bold;
+    background: teal;
+    border:  black solid 2px;
+    text-align: center;
+    
+  }
+
+  .letter:hover{
+    background: #58ab5c;
+  }
+  
+  .sub {
+    font-size: 0.8rem;
+    color: grey;
+  }
+  
+  .subtitle{
+    color: black;
+    font-weight: bold;
+  }
+
+  span{
+    color:  rgb(138, 15, 205);
+    font-weight: bold;
+  }
+  .container {
+    background-color: white;
+    padding: 20px;
+    margin: 30px auto;
+    text-align: center;
+    display: flex;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    align-content: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #grid{
+    text-align: center;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+
+  #output{
+    display: flex;
+    text-align: start;
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+  /* Github @ Sal7one */
+  #call {
+    display: inline-block;
+    background-color: #66bb6a;
+    padding: 4px 30px;
+    margin: 10px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .botrow {
+    margin: 0 auto;
+    width: 280px;
+    clear: both;
+    text-align: center;
+    font-family: 'Exo';
+  }
+  
+  
+  
+  #call:hover {
+    background-color: #81c784;
+  }
+  
+  .dig {
+    float: left;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .inputs{
+    display: block;
+    padding: 10px;
+
+  }
+  .inputs > input{
+    margin-bottom: 10px;
+    display: block;
+  }
+  /* Github @ Sal7one */
+
+
+  .actualvalue{
+    color: rgb(204, 19, 19);
+  }
+
+  .inputcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  label {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  input[type="text"] {
+    padding: 8px;
+    font-size: 18px;
+    width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  label span {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  #playbutton{
+    width: 60px;
+    background-color: turquoise;
+    border-radius: 15px;
+    margin-bottom: 7px;
+  }
