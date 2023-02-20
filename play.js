@@ -2,13 +2,37 @@ let gridElm = document.querySelector("#grid");
 let movesElm = document.querySelector("#moves");
 let addbtn  = document.querySelector("#addbtn");
 let playbutton  = document.querySelector("#playbutton");
+let preparedButton  = document.querySelector("#preparedButton");
 
 addbtn.addEventListener("click", gameMaker);
 playbutton.addEventListener("click", startGame);
+preparedButton.addEventListener("click", prepared);
 
 let globalGameBoard = null;
 let movesAnimation =[];
 let gameResult = -1;
+
+function prepared(){
+  globalGameBoard = [
+    [".",".",".",".",".",],
+    [".","@","#",".","d",],
+    [".",".","#","c",".",],
+    [".",".",".",".",".",]
+]
+  generateGrid(globalGameBoard);
+  findShortestPath(globalGameBoard);
+  
+  let gameArea = document.querySelector("#game");
+  gameArea.style.display = "flex";
+  if(gameResult  <= 0)
+    movesElm.innerHTML = `Not possible to get all keys`;
+  else{
+    movesElm.innerHTML = `Tried: ${movesAnimation.length} \n <br> Shortest number of possible moves: ${gameResult}`;
+  }
+  
+  playAnimation(movesAnimation);
+  
+}
 
 function startGame(){
   let rows = document.querySelectorAll("tr");
@@ -48,6 +72,7 @@ else{
 }
 
 playAnimation(movesAnimation);
+
 }
 
 function findShortestPath(gameboard){
@@ -198,16 +223,22 @@ function showPlayOptions(){
   playbutton.style.display = "inline";
 }
 
-function gameMaker(){
+function gameMaker(preparedrows, preparedcols ){
 
-  let cols = document.querySelector("#rows");
-  let rows = document.querySelector("#cols");
+  let rows = 0;
+  let cols = 0;
+
+  if(preparedrows == null,  preparedcols == null){
+    rows = document.querySelector("#rows");
+    cols = document.querySelector("#cols");
+  }
+
   let table = document.querySelector("#gentable");
 
   let tableRows = "";
-  for (let colnumber= 0; colnumber < cols.valueAsNumber; colnumber++) {
+  for (let rowNumber= 0; rowNumber < rows.valueAsNumber; rowNumber++) {
     let row = "<tr>"
-    for(let rowNumber = 0; rowNumber < rows.valueAsNumber; rowNumber++){
+    for(let colnumber = 0; colnumber < cols.valueAsNumber; colnumber++){
       let column = `<td> <input type="text" value="."/> </td>`;
       row+=column;
     }    
