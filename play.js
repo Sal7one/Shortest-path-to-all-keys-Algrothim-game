@@ -13,8 +13,10 @@ findShortestPath(g);
 
 if(gameResult  <= 0)
   movesElm.innerHTML = `Not possible to get all keys`;
-else
-  movesElm.innerHTML = `Number of moves: ${gameResult}`;
+else{
+  
+  movesElm.innerHTML = `Tried: ${movesAnimation.length} \n <br> Shortest number of moves possible: ${gameResult}`;
+}
 
 playAnimation(movesAnimation);
 
@@ -88,7 +90,8 @@ let cellMoves = new Set();
     movesAnimation.push(Array.from(cellMoves));
   }
 }
-movesAnimation.push([lastFoundKey]);
+movesAnimation.push([lastFoundKey]); // Last key added to animation
+movesAnimation.shift(); // Start point not needed in animation
 }
 
 
