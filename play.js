@@ -1,24 +1,54 @@
 let gridElm = document.querySelector("#grid");
 let movesElm = document.querySelector("#moves");
+let addbtn  = document.querySelector("#addbtn");
+let playbutton  = document.querySelector("#playbutton");
 
-let g = [ 
-  ['C','@','.','D'],
-  ['d','.','#','c']
-];
+addbtn.addEventListener("click", gameMaker);
+playbutton.addEventListener("click", startGame);
+
+let globalGameBoard = null;
 let movesAnimation =[];
 let gameResult = -1;
 
-generateGrid(g);
-findShortestPath(g);
+function startGame(){
+  let rows = document.querySelectorAll("tr");
+  let hasStartingPoint = false;
+  let gameBoard = [];
 
+  for (let index = 0; index < rows.length; index++) {
+    const listOfTd = rows[index].children;
+    let arrayOfChildren = [];
+    for (var i = 0; i < listOfTd.length; i++) {
+      let cell = listOfTd[i];
+      let input = cell.children[0];
+      let cleanedCellInput = input.value.replace(/ /g, "");
+      if(cleanedCellInput == "@")
+        hasStartingPoint = true;
+
+        arrayOfChildren.push(cleanedCellInput);
+      }
+      gameBoard.push(arrayOfChildren);
+  }
+
+  if(!hasStartingPoint){
+    showAlert("Starting point Needed!, Add @ in any cell");
+    return;
+  }
+
+globalGameBoard = gameBoard
+generateGrid(gameBoard);
+findShortestPath(gameBoard);
+
+let gameArea = document.querySelector("#game");
+gameArea.style.display = "flex";
 if(gameResult  <= 0)
   movesElm.innerHTML = `Not possible to get all keys`;
 else{
-  
-  movesElm.innerHTML = `Tried: ${movesAnimation.length} \n <br> Shortest number of moves possible: ${gameResult}`;
+  movesElm.innerHTML = `Tried: ${movesAnimation.length} \n <br> Shortest number of possible moves: ${gameResult}`;
 }
 
 playAnimation(movesAnimation);
+}
 
 function findShortestPath(gameboard){
 
@@ -109,12 +139,12 @@ function playAnimation(listOfMovesMade){
   setTimeout(()=>{
   coordinatesElement.innerHTML = `Row = ${row}, Column = ${column}`
     let currentCell = document.querySelector(`#index${row}${column}`);
-    currentCell.style.background = "red";
+    currentCell.style.backgroundColor = "#ffa200";
     setTimeout(()=>{
       let allBoxes = document.querySelectorAll(".letter")
             
           allBoxes.forEach(box => {
-            box.style.background = "teal";
+            box.style.backgroundColor = "#095d14";
               });
               }, 500)
 
@@ -153,10 +183,50 @@ function buildGameRow(indexOfRow, arrayOfGameObjects) {
         if("ABCDEF".includes(element))
           shape = `🔒 ${element}`
 
-        gameObject += `<div id="index${indexOfRow}${indexOfColumn}" class="letter" >${shape}</div>`
+        gameObject += `
+        <div id="index${indexOfRow}${indexOfColumn}" class="letter" >${shape}</div>
+        `
     }
 
     return `<div id="index${indexOfRow}"class="row">
    ${gameObject}
   </div>`
+}
+
+
+function showPlayOptions(){
+  playbutton.style.display = "inline";
+}
+
+function gameMaker(){
+
+  let cols = document.querySelector("#rows");
+  let rows = document.querySelector("#cols");
+  let table = document.querySelector("#gentable");
+
+  let tableRows = "";
+  for (let colnumber= 0; colnumber < cols.valueAsNumber; colnumber++) {
+    let row = "<tr>"
+    for(let rowNumber = 0; rowNumber < rows.valueAsNumber; rowNumber++){
+      let column = `<td> <input type="text" value="."/> </td>`;
+      row+=column;
+    }    
+    row+="</tr>"
+
+    tableRows +=row;
+  }
+
+  table.innerHTML = `<tbody> ${tableRows}</tbody>`
+
+  showPlayOptions();
+}
+
+function showAlert(msg) {
+  Swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: msg,
+      showConfirmButton: false,
+      timer: 2500
+  })
 }

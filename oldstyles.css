@@ -1,0 +1,324 @@
+body {
+    background-color: #e8e8e8;
+    font-size: 180%
+  }
+  
+  .row {
+    margin: 0 auto;
+    width: auto;
+    clear: both;
+    text-align: start;
+    font-family: 'Exo';
+  }
+  
+  .process{
+    padding: 10px 30px;
+    margin: 2px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background-color: teal;
+    border:  black solid 2px
+  }
+
+  .process:hover{
+    background-color: #58ab5c;
+  }
+  
+  .sub {
+    font-size: 0.8rem;
+    color: grey;
+  }
+  
+  .subtitle{
+    color: black;
+    font-weight: bold;
+  }
+
+  span{
+    color:  rgb(138, 15, 205);
+    font-weight: bold;
+  }
+  .main{
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    align-content: center;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 30px auto;
+  }
+  .pageTitle{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .container{
+    background-color: white;
+
+    text-align: start;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+  }
+  
+  #grid{
+    text-align: start;
+    align-content: space-around;
+    justify-content: space-around;
+  }
+
+  /* Github @ Sal7one */
+  #call {
+    display: inline-block;
+    background-color: #66bb6a;
+    padding: 4px 30px;
+    margin: 10px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .botrow {
+    margin: 0 auto;
+    width: 280px;
+    clear: both;
+    text-align: start;
+    font-family: 'Exo';
+  }
+  
+  
+  
+  #call:hover {
+    background-color: #81c784;
+  }
+  
+  .dig {
+    float: left;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .inputs{
+    display: block;
+    padding: 10px;
+
+  }
+  .inputs > input{
+    margin-bottom: 10px;
+    display: block;
+  }
+  /* Github @ Sal7one */
+
+
+  .actualvalue{
+    color: rgb(204, 19, 19);
+  }
+
+  .inputcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .form-control {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  label {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  input{
+    padding: 8px;
+    font-size: 18px;
+    width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 3px;
+  }
+
+
+  label span {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  #playbutton{
+    width: 60px;
+    background-color: #09604e;
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 7px;
+  }
+
+  #playbutton:active{
+    background-color: #119b7f;
+  }
+  .btn, .prepared{
+    width: 180px;
+    height: 35px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    background-color:#09604e;
+    color: white;
+    border-radius: 29px;
+  }
+
+  .btn:active, .prepared:active{
+    background-color:#119b7f;
+  }
+
+  .choices{
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 2px;
+    margin: 2px;
+  }
+  
+  input[type=radio]{
+    width: fit-content;
+    height: fit-content;
+  }
+
+
+
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.6em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #09604e;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #09604e;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #09604e;
+}
+
+.listOfEntries{
+  text-align: center;
+}
+
+h4{
+
+  margin: 0px !important;
+  padding: 0px;
+
+}
+
+.choices{
+  text-align: center;
+}
+
+
+input[type=number]{
+  width: 80px;
+}
+
+
+.entry{
+  display: inline-block;
+  margin: 10px;
+}
+.entry > input{
+  display: block;
+}
+
+.main, .mid, .endSection{
+  margin-right: 20px;
+
+}
+
+.swal2-popup.swal2-modal.swal2-icon-error.swal2-show{
+  width: 350px !important;
+}
+ 
+
+
+.output{
+    font-size: 180%;
+    background-color: white;
+    margin: 30px auto;
+    margin-right: 20px;
+    display: flex;
+    text-align: start;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.runinfo{
+font-size: 32px;  
+margin: 16px;
+color: #0a4a3d;
+}
+.runinfo >span{
+  color: #09604e;
+}
+
+span.partially{
+  color: rgb(217, 65, 10);
+}
+
+.list {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center
+}
+
+#output{
+  width: auto;
+  text-align: center;
+}
+
+.prepared{
+  width: 80px;
+  font-size: 12px;
+}
+
+.hide{
+  display: none;
+}

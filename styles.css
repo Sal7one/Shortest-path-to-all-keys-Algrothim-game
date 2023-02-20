@@ -2,7 +2,7 @@ body {
     background-color: #e8e8e8;
     font-size: 180%
   }
-  
+
   .row {
     margin: 0 auto;
     width: auto;
@@ -21,15 +21,16 @@ body {
     width: 90px;
     color: white;
     font-weight: bold;
-    background: teal;
     border:  black solid 2px;
     text-align: center;
-    
+    background-color: #095d14;
+    background-image: repeating-linear-gradient(-26deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 2px, transparent 3px, transparent 7px);
+    background-size: 6px 8px;
   }
 
   .letter:hover{
-    background: #58ab5c;
-  }
+    background-color: #ffa200;
+    }
   
   .sub {
     font-size: 0.8rem;
@@ -44,6 +45,20 @@ body {
   span{
     color:  rgb(138, 15, 205);
     font-weight: bold;
+  }
+  .containertop{
+    background-color: white;
+    padding: 20px;
+    margin: 30px auto;
+    text-align: center;
+    display: flex;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    align-content: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
   .container {
     background-color: white;
@@ -91,8 +106,6 @@ body {
     font-family: 'Exo';
   }
   
-  
-  
   #call:hover {
     background-color: #81c784;
   }
@@ -133,13 +146,6 @@ body {
     margin-bottom: 24px;
   }
 
-  .form-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-
   label {
     font-size: 18px;
     margin-bottom: 8px;
@@ -164,7 +170,12 @@ body {
 
   #playbutton{
     width: 60px;
-    background-color: turquoise;
+    background-color: rgb(7, 137, 124);
     border-radius: 15px;
     margin-bottom: 7px;
   }
+
+.form-control > p{
+  font-size: 32px;
+  margin: 20px;
+}
