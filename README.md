@@ -9,7 +9,10 @@ The player must navigate in the matrix and deal with
 Walls, Locks, and collect keys.
 
 
-<img src="img.png" width="600px>
+<p align="center">
+
+<img  src="img.png" width="500px" >
+</p>
 
 ### A mathematical model for the solution
 
