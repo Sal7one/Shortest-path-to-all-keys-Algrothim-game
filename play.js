@@ -8,20 +8,19 @@ addbtn.addEventListener("click", gameMaker);
 playbutton.addEventListener("click", startGame);
 preparedButton.addEventListener("click", prepared);
 
-let globalGameBoard = null;
-let movesAnimation =[];
 let gameResult = -1;
 
 function prepared(){
-  globalGameBoard = [
-    [".",".",".",".",".",],
+
+  preparedBoard = [
+    [".",".","#",".",".",],
     [".","@","#",".","d",],
     [".",".","#","c",".",],
     [".",".",".",".",".",]
 ]
-  generateGrid(globalGameBoard);
-  findShortestPath(globalGameBoard);
-  
+  movesAnimation = [];
+  generateGrid(preparedBoard);
+  findShortestPath(preparedBoard);
   let gameArea = document.querySelector("#game");
   gameArea.style.display = "flex";
   if(gameResult  <= 0)
@@ -58,13 +57,14 @@ function startGame(){
     showAlert("Starting point Needed!, Add @ in any cell");
     return;
   }
-
-globalGameBoard = gameBoard
+  
+movesAnimation = [];
 generateGrid(gameBoard);
 findShortestPath(gameBoard);
 
 let gameArea = document.querySelector("#game");
 gameArea.style.display = "flex";
+
 if(gameResult  <= 0)
   movesElm.innerHTML = `Not possible to get all keys`;
 else{
@@ -75,6 +75,7 @@ playAnimation(movesAnimation);
 
 }
 
+let movesAnimation = [];
 function findShortestPath(gameboard){
 
 let maxRows = gameboard.length;
