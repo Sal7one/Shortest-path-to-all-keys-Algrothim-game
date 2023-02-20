@@ -10,6 +10,8 @@ preparedButton.addEventListener("click", prepared);
 
 let gameResult = -1;
 
+
+let globalJobs = [];
 function prepared(){
 
   preparedBoard = [
@@ -77,6 +79,13 @@ playAnimation(movesAnimation);
 
 let movesAnimation = [];
 function findShortestPath(gameboard){
+  let coordinatesElement = document.querySelector("#coordinates");
+    coordinatesElement.innerHTML = "";
+    
+  // Clear animations
+  globalJobs.forEach(timeoutId=>{
+    clearTimeout(timeoutId);
+  })
 
 let maxRows = gameboard.length;
 let maxCols = gameboard[0].length;
@@ -150,35 +159,48 @@ movesAnimation.push([lastFoundKey]); // Last key added to animation
 movesAnimation.shift(); // Start point not needed in animation
 }
 
-
 function playAnimation(listOfMovesMade){
+  if(listOfMovesMade.length < 1)
+  return;
 
   let setOfMoves = Array.from(listOfMovesMade);
-  let timeout = 1000;
+
+  addColorToCell(setOfMoves);
+}
+function addColorToCell(setOfMoves){
   let coordinatesElement = document.querySelector("#coordinates");
+  let timeout = 1000;
 
   setOfMoves.forEach(cellMove => {
     cellMove.forEach(rowColumn=>{
 
-    let row = rowColumn.split(",")[0]
-    let column = rowColumn.split(",")[1]
-  setTimeout(()=>{
-  coordinatesElement.innerHTML = `Row = ${row}, Column = ${column}`
-    let currentCell = document.querySelector(`#index${row}${column}`);
-    currentCell.style.backgroundColor = "#ffa200";
-    setTimeout(()=>{
-      let allBoxes = document.querySelectorAll(".letter")
-            
-          allBoxes.forEach(box => {
-            box.style.backgroundColor = "#095d14";
-              });
-              }, 500)
+  let row = rowColumn.split(",")[0]
+  let column = rowColumn.split(",")[1]
 
-              setTimeout(()=>{
-                coordinatesElement.innerHTML = ``
-              },timeout - 1000)
-        }, timeout)
-        timeout +=1000;
+  cellTime1 = setTimeout(()=>{
+    coordinatesElement.innerHTML = `Row = ${row}, Column = ${column}`
+      let currentCell = document.querySelector(`#index${row}${column}`);
+      currentCell.style.backgroundColor = "#ffa200";
+      cellTime2 =  setTimeout(()=>{
+        let allBoxes = document.querySelectorAll(".letter")
+              
+            allBoxes.forEach(box => {
+              box.style.backgroundColor = "#095d14";
+                });
+                }, 500)
+  
+               cellTime3 =  setTimeout(()=>{
+                  coordinatesElement.innerHTML = ``
+                  
+                },timeout - 1000)
+
+                globalJobs.push(cellTime2);
+                globalJobs.push(cellTime3);
+
+          }, timeout)
+          timeout+=1000
+          globalJobs.push(cellTime1);
+
       });
     })
 }
