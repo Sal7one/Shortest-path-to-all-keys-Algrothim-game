@@ -13,6 +13,7 @@ let gameResult = -1;
 
 let globalJobs = [];
 function prepared(){
+  gameResult = -1;
 
   preparedBoard = [
     [".",".","#",".",".",],
@@ -25,7 +26,8 @@ function prepared(){
   findShortestPath(preparedBoard);
   let gameArea = document.querySelector("#game");
   gameArea.style.display = "flex";
-  if(gameResult  <= 0)
+  console.log(gameResult)
+  if(gameResult <= 0)
     movesElm.innerHTML = `Not possible to get all keys`;
   else{
     movesElm.innerHTML = `Tried: ${movesAnimation.length} \n <br> Shortest number of possible moves: ${gameResult}`;
@@ -39,6 +41,7 @@ function startGame(){
   let rows = document.querySelectorAll("tr");
   let hasStartingPoint = false;
   let gameBoard = [];
+  gameResult = -1;
 
   for (let index = 0; index < rows.length; index++) {
     const listOfTd = rows[index].children;
